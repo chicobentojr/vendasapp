@@ -1,9 +1,6 @@
 ﻿using SistemaDeVendasAPI.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace SistemaDeVendasAPI.Controllers
@@ -17,11 +14,13 @@ namespace SistemaDeVendasAPI.Controllers
         {
             return contexto.Fabricantes.ToList();
         }
+
         [HttpGet]
         public Fabricante Get(int fabricanteId)
         {
             return contexto.Fabricantes.FirstOrDefault(f => f.FabricanteId == fabricanteId);
         }
+
         [HttpPost]
         public Fabricante Post(Fabricante fabricante)
         {
@@ -29,6 +28,7 @@ namespace SistemaDeVendasAPI.Controllers
             contexto.SubmitChanges();
             return fabricante;
         }
+
         [HttpPut]
         public Fabricante Put(int fabricanteId, Fabricante fabricante)
         {
@@ -41,6 +41,7 @@ namespace SistemaDeVendasAPI.Controllers
             return temp;
         }
         [HttpDelete]
+
         public Fabricante Delete(int fabricanteId)
         {
             Fabricante temp = contexto.Fabricantes.FirstOrDefault(f => f.FabricanteId == fabricanteId);
