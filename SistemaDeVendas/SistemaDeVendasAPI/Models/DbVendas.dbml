@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="db086b0a1b40a74edfade9a5b20175fa0b" Class="DbVendasDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=086b0a1b-40a7-4edf-ade9-a5b20175fa0b.sqlserver.sequelizer.com;Initial Catalog=db086b0a1b40a74edfade9a5b20175fa0b;Persist Security Info=True;User ID=zwthjmrhsyhnypvw" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="db086b0a1b40a74edfade9a5b20175fa0bConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cliente" Member="Clientes">
+    <Type Name="Cliente">
+      <Column Name="ClienteId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Vip" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Cliente_Venda" Member="Vendas" AccessModifier="Internal" ThisKey="ClienteId" OtherKey="ClienteId" Type="Venda" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VendaProduto" Member="VendaProdutos">
+    <Type Name="VendaProduto">
+      <Column Name="VendaId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ItemNumero" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProdutoId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantidade" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Preco" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Produto_VendaProduto" Member="Produto" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="Produto" IsForeignKey="true" />
+      <Association Name="Venda_VendaProduto" Member="Venda" ThisKey="VendaId" OtherKey="VendaId" Type="Venda" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Fabricante" Member="Fabricantes">
+    <Type Name="Fabricante">
+      <Column Name="FabricanteId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Fabricante_Produto" Member="Produtos" AccessModifier="Internal" ThisKey="FabricanteId" OtherKey="FabricanteId" Type="Produto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Produto" Member="Produtos">
+    <Type Name="Produto">
+      <Column Name="ProdutoId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FabricanteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QtdEstoque" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Preco" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Produto_VendaProduto" Member="VendaProdutos" AccessModifier="Internal" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="VendaProduto" />
+      <Association Name="Fabricante_Produto" Member="Fabricante" ThisKey="FabricanteId" OtherKey="FabricanteId" Type="Fabricante" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Venda" Member="Vendas">
+    <Type Name="Venda">
+      <Column Name="VendaId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ClienteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Total1" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Total2" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Desconto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="Venda_VendaProduto" Member="VendaProdutos" AccessModifier="Internal" ThisKey="VendaId" OtherKey="VendaId" Type="VendaProduto" />
+      <Association Name="Cliente_Venda" Member="Cliente" ThisKey="ClienteId" OtherKey="ClienteId" Type="Cliente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwClientesVip" Member="vwClientesVips">
+    <Type Name="vwClientesVip">
+      <Column Name="ClienteId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Vip" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.spAtualizarEstoque" Method="spAtualizarEstoque">
+    <Parameter Name="ProdutoId" Parameter="produtoId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Quantidade" Parameter="quantidade" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.spVendasPorPeriodo" Method="spVendasPorPeriodo">
+    <Parameter Name="DataInicio" Parameter="dataInicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="DataFim" Parameter="dataFim" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="spVendasPorPeriodoResult">
+      <Column Name="VendaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClienteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Total1" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Total2" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Desconto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spClienteVip" Method="spClienteVip">
+    <Parameter Name="ClienteId" Parameter="clienteId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.spProdutosMaisVendidosPorMes" Method="spProdutosMaisVendidosPorMes">
+    <Parameter Name="QuantidadeProdutos" Parameter="quantidadeProdutos" Type="System.Int32" DbType="Int" />
+    <ElementType Name="spProdutosMaisVendidosPorMesResult">
+      <Column Name="ProdutoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Produto" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Fabricante" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Vendidos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spVendaCadastro" Method="spVendaCadastro">
+    <Parameter Name="ClienteId" Parameter="clienteId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Data" Parameter="data" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="VendaId" Parameter="vendaId" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.spVendaProdutoCadastro" Method="spVendaProdutoCadastro">
+    <Parameter Name="VendaId" Parameter="vendaId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ProdutoId" Parameter="produtoId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Quantidade" Parameter="quantidade" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ItemNumero" Parameter="itemNumero" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.spVendasPorCliente" Method="spVendasPorCliente">
+    <Parameter Name="ClienteId" Parameter="clienteId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="spVendasPorClienteResult">
+      <Column Name="VendaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClienteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Total1" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Total2" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Desconto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
