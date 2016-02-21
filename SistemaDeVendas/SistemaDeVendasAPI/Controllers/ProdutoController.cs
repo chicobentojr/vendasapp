@@ -18,7 +18,7 @@ namespace SistemaDeVendasAPI.Controllers
         [HttpGet]
         public Produto Get(int produtoId)
         {
-            return contexto.Produtos.FirstOrDefault(p=>p.ProdutoId == produtoId);
+            return contexto.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
         }
 
         [HttpPost]
@@ -32,7 +32,7 @@ namespace SistemaDeVendasAPI.Controllers
         [HttpPut]
         public Produto Put(int produtoId, Produto produto)
         {
-            Produto temp = contexto.Produtos.FirstOrDefault(p=>p.ProdutoId == produtoId);
+            Produto temp = contexto.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
 
             temp.Descricao = produto.Descricao;
             temp.FabricanteId = produto.FabricanteId;
@@ -47,7 +47,7 @@ namespace SistemaDeVendasAPI.Controllers
         [HttpDelete]
         public Produto Delete(int produtoId)
         {
-            Produto temp = contexto.Produtos.FirstOrDefault(p=>p.ProdutoId == produtoId);
+            Produto temp = contexto.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
 
             contexto.Produtos.DeleteOnSubmit(temp);
 

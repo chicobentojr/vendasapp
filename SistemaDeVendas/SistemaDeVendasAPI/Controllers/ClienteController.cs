@@ -32,7 +32,7 @@ namespace SistemaDeVendasAPI.Controllers
         [HttpPut]
         public Cliente Put(int clienteId, Cliente cliente)
         {
-            Cliente temp = contexto.Clientes.FirstOrDefault(c=>c.ClienteId == clienteId);
+            Cliente temp = contexto.Clientes.FirstOrDefault(c => c.ClienteId == clienteId);
 
             temp.Nome = cliente.Nome;
             temp.Vip = cliente.Vip;
@@ -45,7 +45,7 @@ namespace SistemaDeVendasAPI.Controllers
         [HttpDelete]
         public Cliente Delete(int clienteId)
         {
-            Cliente temp = contexto.Clientes.FirstOrDefault(c=>c.ClienteId == clienteId);
+            Cliente temp = contexto.Clientes.FirstOrDefault(c => c.ClienteId == clienteId);
 
             contexto.Clientes.DeleteOnSubmit(temp);
 
