@@ -13,24 +13,24 @@ namespace SistemaDeVendasAPI.Controllers
         private DbVendasDataContext contexto = new DbVendasDataContext();
 
         [HttpGet]
-        public List<Venda> VendasPorPeriodo(DateTime parametro1,DateTime parametro2)
+        public IHttpActionResult VendasPorPeriodo(DateTime parametro1,DateTime parametro2)
         {
-            return contexto.Vendas.Where(v => v.Data >= parametro1 && v.Data <= parametro2).ToList();
+            return Json(contexto.Vendas.Where(v => v.Data >= parametro1 && v.Data <= parametro2).ToList());
         }
         [HttpGet]
-        public List<Venda> VendasPorCliente(int parametro1)
+        public IHttpActionResult VendasPorCliente(int parametro1)
         {
-            return contexto.Vendas.Where(v => v.ClienteId == parametro1).ToList();
+            return Json(contexto.Vendas.Where(v => v.ClienteId == parametro1).ToList());
         }
         [HttpGet]
-        public List<spProdutosMaisVendidosPorMesResult> ProdutosMaisVendidos(int parametro1)
+        public IHttpActionResult ProdutosMaisVendidos(int parametro1)
         {
-            return contexto.spProdutosMaisVendidosPorMes(parametro1).ToList();
+            return Json(contexto.spProdutosMaisVendidosPorMes(parametro1).ToList());
         }
         [HttpGet]
-        public List<vwClientesVip> ClientesVip()
+        public IHttpActionResult ClientesVip()
         {
-            return contexto.vwClientesVips.ToList();
+            return Json(contexto.vwClientesVips.ToList());
         }
     }
 }

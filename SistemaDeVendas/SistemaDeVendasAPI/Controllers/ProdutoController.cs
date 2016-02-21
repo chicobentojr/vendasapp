@@ -10,27 +10,27 @@ namespace SistemaDeVendasAPI.Controllers
         private DbVendasDataContext contexto = new DbVendasDataContext();
 
         [HttpGet]
-        public List<Produto> Get()
+        public IHttpActionResult Get()
         {
-            return contexto.Produtos.ToList();
+            return Json(contexto.Produtos.ToList());
         }
 
         [HttpGet]
-        public Produto Get(int produtoId)
+        public IHttpActionResult Get(int produtoId)
         {
-            return contexto.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
+            return Json(contexto.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId));
         }
 
         [HttpPost]
-        public Produto Post(Produto produto)
+        public IHttpActionResult Post(Produto produto)
         {
             contexto.Produtos.InsertOnSubmit(produto);
             contexto.SubmitChanges();
-            return produto;
+            return Json(produto);
         }
 
         [HttpPut]
-        public Produto Put(int produtoId, Produto produto)
+        public IHttpActionResult Put(int produtoId, Produto produto)
         {
             Produto temp = contexto.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
 
@@ -41,11 +41,11 @@ namespace SistemaDeVendasAPI.Controllers
 
             contexto.SubmitChanges();
 
-            return temp;
+            return Json(temp);
         }
 
         [HttpDelete]
-        public Produto Delete(int produtoId)
+        public IHttpActionResult Delete(int produtoId)
         {
             Produto temp = contexto.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
 
@@ -53,7 +53,7 @@ namespace SistemaDeVendasAPI.Controllers
 
             contexto.SubmitChanges();
 
-            return temp;
+            return Json(temp);
         }
     }
 }

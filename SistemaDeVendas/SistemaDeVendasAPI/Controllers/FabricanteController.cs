@@ -10,27 +10,27 @@ namespace SistemaDeVendasAPI.Controllers
         private DbVendasDataContext contexto = new DbVendasDataContext();
 
         [HttpGet]
-        public List<Fabricante> Get()
+        public IHttpActionResult Get()
         {
-            return contexto.Fabricantes.ToList();
+            return Json(contexto.Fabricantes.ToList());
         }
 
         [HttpGet]
-        public Fabricante Get(int fabricanteId)
+        public IHttpActionResult Get(int fabricanteId)
         {
-            return contexto.Fabricantes.FirstOrDefault(f => f.FabricanteId == fabricanteId);
+            return Json(contexto.Fabricantes.FirstOrDefault(f => f.FabricanteId == fabricanteId));
         }
 
         [HttpPost]
-        public Fabricante Post(Fabricante fabricante)
+        public IHttpActionResult Post(Fabricante fabricante)
         {
             contexto.Fabricantes.InsertOnSubmit(fabricante);
             contexto.SubmitChanges();
-            return fabricante;
+            return Json(fabricante);
         }
 
         [HttpPut]
-        public Fabricante Put(int fabricanteId, Fabricante fabricante)
+        public IHttpActionResult Put(int fabricanteId, Fabricante fabricante)
         {
             Fabricante temp = contexto.Fabricantes.FirstOrDefault(f => f.FabricanteId == fabricanteId);
 
@@ -38,11 +38,11 @@ namespace SistemaDeVendasAPI.Controllers
 
             contexto.SubmitChanges();
 
-            return temp;
+            return Json(temp);
         }
-        [HttpDelete]
 
-        public Fabricante Delete(int fabricanteId)
+        [HttpDelete]
+        public IHttpActionResult Delete(int fabricanteId)
         {
             Fabricante temp = contexto.Fabricantes.FirstOrDefault(f => f.FabricanteId == fabricanteId);
 
@@ -50,7 +50,7 @@ namespace SistemaDeVendasAPI.Controllers
 
             contexto.SubmitChanges();
 
-            return temp;
+            return Json(temp);
         }
     }
 }

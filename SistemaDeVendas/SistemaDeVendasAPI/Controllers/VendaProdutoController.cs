@@ -11,19 +11,19 @@ namespace SistemaDeVendasAPI.Controllers
         private DbVendasDataContext contexto = new DbVendasDataContext();
 
         [HttpGet]
-        public List<VendaProduto> Get(int vendaId)
+        public IHttpActionResult Get(int vendaId)
         {
-            return contexto.VendaProdutos.Where(vp=>vp.VendaId == vendaId).ToList();
+            return Json(contexto.VendaProdutos.Where(vp=>vp.VendaId == vendaId).ToList());
         }
 
         [HttpGet]
-        public VendaProduto Get(int vendaId,int itemNumero)
+        public IHttpActionResult Get(int vendaId,int itemNumero)
         {
-            return contexto.VendaProdutos.FirstOrDefault(v => v.VendaId == vendaId);
+            return Json(contexto.VendaProdutos.FirstOrDefault(v => v.VendaId == vendaId));
         }
 
         [HttpPost]
-        public VendaProduto Post(int vendaId, VendaProduto vendaProduto)
+        public IHttpActionResult Post(int vendaId, VendaProduto vendaProduto)
         {
             int? itemNumero = 0;
             try {
@@ -32,7 +32,7 @@ namespace SistemaDeVendasAPI.Controllers
                 if (itemNumero != 0)
                 {
                     vendaProduto = contexto.VendaProdutos.FirstOrDefault(vp => vp.VendaId == vendaId && vp.ItemNumero == itemNumero);
-                    return vendaProduto;
+                    return Json(vendaProduto);
                 }
             }
             catch (SqlException ex)
@@ -40,14 +40,14 @@ namespace SistemaDeVendasAPI.Controllers
                 if(ex.Number == 50000)
                 {
                     vendaProduto.VendaId = -1;
-                    return vendaProduto;
+                    return Json(vendaProduto);
                 }
             }
             return null;
         }
 
         [HttpPut]
-        public VendaProduto Put(int vendaId, int itemNumero, VendaProduto vendaProduto)
+        public IHttpActionResult Put(int vendaId, int itemNumero, VendaProduto vendaProduto)
         {
             VendaProduto temp = contexto.VendaProdutos.FirstOrDefault(vp => vp.VendaId == vendaId && vp.ItemNumero == itemNumero);
 
@@ -57,11 +57,11 @@ namespace SistemaDeVendasAPI.Controllers
 
             contexto.SubmitChanges();
 
-            return temp;
+            return Json(temp);
         }
 
         [HttpDelete]
-        public VendaProduto Delete(int vendaId,int itemNumero)
+        public IHttpActionResult Delete(int vendaId,int itemNumero)
         {
             VendaProduto temp = contexto.VendaProdutos.FirstOrDefault(vp => vp.VendaId == vendaId && vp.ItemNumero == itemNumero);
 
@@ -69,7 +69,7 @@ namespace SistemaDeVendasAPI.Controllers
 
             contexto.SubmitChanges();
 
-            return temp;
+            return Json(temp);
         }
     }
 }

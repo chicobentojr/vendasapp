@@ -10,19 +10,19 @@ namespace SistemaDeVendasAPI.Controllers
         private DbVendasDataContext contexto = new DbVendasDataContext();
 
         [HttpGet]
-        public List<Venda> Get()
+        public IHttpActionResult Get()
         {
-            return contexto.Vendas.ToList();
+            return Json(contexto.Vendas.ToList());
         }
 
         [HttpGet]
-        public Venda Get(int vendaId)
+        public IHttpActionResult Get(int vendaId)
         {
-            return contexto.Vendas.FirstOrDefault(v => v.VendaId == vendaId);
+            return Json(contexto.Vendas.FirstOrDefault(v => v.VendaId == vendaId));
         }
 
         [HttpPost]
-        public Venda Post(Venda venda)
+        public IHttpActionResult Post(Venda venda)
         {
             int? vendaId = 0;
             contexto.spVendaCadastro(venda.ClienteId, venda.Data, ref vendaId);
@@ -30,13 +30,13 @@ namespace SistemaDeVendasAPI.Controllers
             if (vendaId != 0)
             {
                 venda = contexto.Vendas.FirstOrDefault(v => v.VendaId == vendaId);
-                return venda;
+                return Json(venda);
             }
             return null;
         }
 
         [HttpPut]
-        public Venda Put(int vendaId, Venda venda)
+        public IHttpActionResult Put(int vendaId, Venda venda)
         {
             Venda temp = contexto.Vendas.FirstOrDefault(v => v.VendaId == vendaId);
 
@@ -48,11 +48,11 @@ namespace SistemaDeVendasAPI.Controllers
 
             contexto.SubmitChanges();
 
-            return temp;
+            return Json(temp);
         }
 
         [HttpDelete]
-        public Venda Delete(int vendaId)
+        public IHttpActionResult Delete(int vendaId)
         {
             Venda temp = contexto.Vendas.FirstOrDefault(v => v.VendaId == vendaId);
 
@@ -60,7 +60,7 @@ namespace SistemaDeVendasAPI.Controllers
 
             contexto.SubmitChanges();
 
-            return temp;
+            return Json(temp);
         }
     }
 }
