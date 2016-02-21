@@ -28,7 +28,6 @@ namespace SistemaDeVendasWPF.Views
 
         private void btnClientes_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Carregando Clientes...");
             ClienteWindow clienteWindow = new ClienteWindow();
             clienteWindow.Show();
         }

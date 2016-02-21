@@ -7,16 +7,52 @@
         mc:Ignorable="d"
         Title="Cliente" Height="500" Width="600"
         Icon="../Imagens/Cliente.png">
-    <Grid>
+    <Grid Margin="5 0 5 0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
 
-        <DataGrid 
+        <StackPanel Grid.Column="0"
+                    Grid.Row="0">
+            <Label Content="Novo" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
+            <Label Content="Nome" />
+            <TextBox x:Name="txtNome" Margin="5 0 5 0"/>
+            <CheckBox x:Name="chkVip" Margin="5 5 5 0" Content="Vip" />
+            <Button x:Name="btnCadastrar" Margin="5 5 5 0" Content="Cadastrar" Click="btnCadastrar_Click" />
+        </StackPanel>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="1">
+            <Label Content="Editar" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
+            <Label Content="Cliente" />
+            <ComboBox x:Name="cmbEdtCliente" Margin="5 0 5 0" />
+            <Label Content="Nome" />
+            <TextBox x:Name="txtEdtNome" Margin="5 0 5 0"/>
+            <CheckBox x:Name="chkEdtVip" Margin="5 5 5 0" Content="Vip" />
+            <Button x:Name="btnEditar" Margin="5 5 5 0" Content="Editar" Click="btnEditar_Click" />
+        </StackPanel>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="2">
+            <Label Content="Excluir" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
+            <Label Content="Cliente" />
+            <ComboBox x:Name="cmbDelCliente" Margin="5 0 5 0" />
+            <Button x:Name="btnExcluir" Margin="5 5 5 0" Content="Excluir" Click="btnExcluir_Click" />
+        </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Margin="5 0 0 0">
+            <Label Content="Clientes" Margin="5 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
+            <DataGrid 
+            BorderThickness="0"
             x:Name="grdClientes"
-            Grid.Column="1"
             IsReadOnly="True"
             />
+        </StackPanel>
     </Grid>
 </Window>
