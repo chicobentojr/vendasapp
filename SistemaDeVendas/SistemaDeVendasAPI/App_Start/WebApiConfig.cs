@@ -12,21 +12,27 @@ namespace SistemaDeVendasAPI
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "VendaProdutoApi",
+                routeTemplate: "api/vendaproduto/{vendaId}/{itemNumero}",
+                defaults: new { controller = "VendaProduto", itemNumero = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "VendaApi",
                 routeTemplate: "api/venda/{vendaId}",
-                defaults: new { controller = "Venda", fabricanteId = RouteParameter.Optional }
+                defaults: new { controller = "Venda", vendaId = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ProdutoApi",
                 routeTemplate: "api/produto/{produtoId}",
-                defaults: new { controller = "Produto", fabricanteId = RouteParameter.Optional }
+                defaults: new { controller = "Produto", produtoId = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ClienteApi",
                 routeTemplate: "api/cliente/{clienteId}",
-                defaults: new { controller = "Cliente", fabricanteId = RouteParameter.Optional }
+                defaults: new { controller = "Cliente", clienteId = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(

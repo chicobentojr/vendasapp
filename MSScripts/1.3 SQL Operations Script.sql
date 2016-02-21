@@ -61,15 +61,15 @@ Declare
 		@PrecoTotal decimal(18,2)
 Begin
 	Select
-		@ClienteId = ClienteId,
-		@Total1 = Total1
+		@ClienteId = ClienteId
 	From
 		Venda
 	Where 
 		VendaId = @VendaId
 
 	Select
-		@ItemNumero = Count(*)
+		@ItemNumero = Count(*),
+		@Total1 = Sum(Preco)
 	From
 		VendaProduto
 	Where 
