@@ -31,5 +31,10 @@ namespace SistemaDeVendasWPF.Views
         {
             new ListagemWindow().Show();
         }
+
+        private void btnVendas_Click(object sender, RoutedEventArgs e)
+        {
+            new VendaWindow().Show();
+        }
     }
 }

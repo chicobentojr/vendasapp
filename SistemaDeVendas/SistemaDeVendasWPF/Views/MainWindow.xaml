@@ -18,13 +18,22 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <Button x:Name="btnVendas" 
+                ToolTip="Vendas" 
+                Grid.Column="1" 
+                Grid.Row="0"
+                Background="Transparent"
+                BorderThickness="0" Click="btnVendas_Click">
+            <StackPanel>
+                <Image Source="../Imagens/Venda.png" />
+            </StackPanel>
+        </Button>
+        
         <Button x:Name="btnListagens" 
                 ToolTip="Listagens" 
-                Grid.Column="4" 
+                Grid.Column="3" 
                 Grid.Row="0"
                 Background="Transparent"
                 BorderThickness="0" Click="btnListagens_Click">
@@ -35,7 +44,7 @@
 
         <Button x:Name="btnClientes" 
                 ToolTip="Clientes" 
-                Grid.Column="1" 
+                Grid.Column="0" 
                 Grid.Row="1"
                 Background="Transparent"
                 BorderThickness="0" Click="btnClientes_Click">
@@ -45,7 +54,7 @@
         </Button>
         <Button x:Name="btnFabricantes" 
                 ToolTip="Fabricantes" 
-                Grid.Column="3" 
+                Grid.Column="2" 
                 Grid.Row="1"
                 Background="Transparent"
                 BorderThickness="0" Click="btnFabricantes_Click">
@@ -55,7 +64,7 @@
         </Button>
         <Button x:Name="btnProdutos" 
                 ToolTip="Produtos" 
-                Grid.Column="5" 
+                Grid.Column="4" 
                 Grid.Row="1"
                 Background="Transparent"
                 BorderThickness="0" Click="btnProdutos_Click">

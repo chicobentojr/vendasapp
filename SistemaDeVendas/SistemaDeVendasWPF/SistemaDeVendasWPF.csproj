@@ -63,6 +63,7 @@
     <Compile Include="Models\Listagem.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Venda.cs" />
+    <Compile Include="Models\VendaProduto.cs" />
     <Compile Include="Views\ClienteWindow.xaml.cs">
       <DependentUpon>ClienteWindow.xaml</DependentUpon>
     </Compile>
@@ -71,6 +72,9 @@
     </Compile>
     <Compile Include="Views\ProdutoWIndow.xaml.cs">
       <DependentUpon>ProdutoWIndow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VendaWindow.xaml.cs">
+      <DependentUpon>VendaWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\FabricanteWindow.xaml">
       <SubType>Designer</SubType>
@@ -100,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProdutoWIndow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VendaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +153,7 @@
     <Resource Include="Imagens\Produto.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Imagens\Venda.png" />
     <Resource Include="Imagens\Listagem.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
