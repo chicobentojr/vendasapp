@@ -28,8 +28,12 @@ namespace SistemaDeVendasWPF.Views
 
         private void btnClientes_Click(object sender, RoutedEventArgs e)
         {
-            ClienteWindow clienteWindow = new ClienteWindow();
-            clienteWindow.Show();
+            new ClienteWindow().Show();
+        }
+
+        private void btnFabricantes_Click(object sender, RoutedEventArgs e)
+        {
+            new FabricanteWindow().Show();
         }
     }
 }

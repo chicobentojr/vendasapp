@@ -1,12 +1,11 @@
-﻿<Window x:Class="SistemaDeVendasWPF.Views.ClienteWindow"
+﻿<Window x:Class="SistemaDeVendasWPF.Views.FabricanteWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaDeVendasWPF.Views"
         mc:Ignorable="d"
-        Title="Cliente" Height="500" Width="600"
-        Icon="../Imagens/Cliente.png">
+        Title="FabricanteWindow" Height="500" Width="600">
     <Grid Margin="5 0 5 0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -21,36 +20,34 @@
         <StackPanel Grid.Column="0"
                     Grid.Row="0">
             <Label Content="Novo" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
-            <Label Content="Nome" />
-            <TextBox x:Name="txtNome" Margin="5 0 5 0"/>
-            <CheckBox x:Name="chkVip" Margin="5 5 5 0" Content="Vip" />
+            <Label Content="Descrição" />
+            <TextBox x:Name="txtDescricao" Margin="5 0 5 0"/>
             <Button x:Name="btnCadastrar" Margin="5 5 5 0" Content="Cadastrar" Click="btnCadastrar_Click" />
         </StackPanel>
         <StackPanel Grid.Column="0"
                     Grid.Row="1">
             <Label Content="Editar" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
-            <Label Content="Cliente" />
-            <ComboBox x:Name="cmbEdtCliente" Margin="5 0 5 0" />
-            <Label Content="Nome" />
-            <TextBox x:Name="txtEdtNome" Margin="5 0 5 0"/>
-            <CheckBox x:Name="chkEdtVip" Margin="5 5 5 0" Content="Vip" />
+            <Label Content="Fabricante" />
+            <ComboBox x:Name="cmdEdtFabricante" Margin="5 0 5 0" />
+            <Label Content="Descrição" />
+            <TextBox x:Name="txtEdtDescricao" Margin="5 0 5 0"/>
             <Button x:Name="btnEditar" Margin="5 5 5 0" Content="Editar" Click="btnEditar_Click" />
         </StackPanel>
         <StackPanel Grid.Column="0"
                     Grid.Row="2">
             <Label Content="Excluir" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
-            <Label Content="Cliente" />
-            <ComboBox x:Name="cmbDelCliente" Margin="5 0 5 0" />
+            <Label Content="Fabricante" />
+            <ComboBox x:Name="cmbDelFabricante" Margin="5 0 5 0" />
             <Button x:Name="btnExcluir" Margin="5 5 5 0" Content="Excluir" Click="btnExcluir_Click" />
         </StackPanel>
         <StackPanel Grid.Column="1"
                     Grid.Row="0"
                     Grid.RowSpan="3"
                     Margin="5 0 0 0">
-            <Label Content="Clientes" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
+            <Label Content="Fabricantes" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
             <DataGrid 
             BorderThickness="0"
-            x:Name="grdClientes"
+            x:Name="grdFabricantes"
             IsReadOnly="True"
             />
         </StackPanel>

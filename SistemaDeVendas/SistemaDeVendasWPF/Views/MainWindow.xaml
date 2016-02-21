@@ -30,6 +30,16 @@
                 <Image Source="../Imagens/Cliente.png" />
             </StackPanel>
         </Button>
+        <Button x:Name="btnFabricantes" 
+                ToolTip="Fabricantes" 
+                Grid.Column="3" 
+                Grid.Row="1"
+                Background="Transparent"
+                BorderThickness="0" Click="btnFabricantes_Click">
+            <StackPanel>
+                <Image Source="../Imagens/Fabricantes.png" />
+            </StackPanel>
+        </Button>
 
 
     </Grid>
