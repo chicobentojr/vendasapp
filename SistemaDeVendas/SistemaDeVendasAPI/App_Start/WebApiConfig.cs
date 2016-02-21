@@ -12,6 +12,13 @@ namespace SistemaDeVendasAPI
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "ListagemApi",
+                routeTemplate: "api/listagem/{action}/{parametro1}/{parametro2}",
+                defaults: new { controller = "Listagem", parametro1 = RouteParameter.Optional, parametro2 = RouteParameter.Optional }
+            );
+
+
+            config.Routes.MapHttpRoute(
                 name: "VendaProdutoApi",
                 routeTemplate: "api/vendaproduto/{vendaId}/{itemNumero}",
                 defaults: new { controller = "VendaProduto", itemNumero = RouteParameter.Optional }
