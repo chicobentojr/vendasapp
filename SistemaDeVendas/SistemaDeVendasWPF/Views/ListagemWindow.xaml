@@ -1,0 +1,62 @@
+﻿<Window x:Class="SistemaDeVendasWPF.Views.ListagemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaDeVendasWPF.Views"
+        mc:Ignorable="d"
+        Title="Listagens" Height="600" Width="600"
+        Icon="../Imagens/Listagem.png">
+    <Grid Margin="5 0 5 0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0"
+                    Grid.Row="0">
+            <Label Content="Vendas por Cliente" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
+            <Label Content="Cliente" />
+            <ComboBox x:Name="cmbCliente" Margin="5 0 5 0" SelectionChanged="cmbCliente_SelectionChanged" />
+        </StackPanel>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="1">
+            <Label Content="Vendas por Período" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
+            <Label Content="Ìnício" />
+            <DatePicker x:Name="txtDataInicio" />
+            <Label Content="Fim" />
+            <DatePicker x:Name="txtDataFim" />
+            
+            <Button x:Name="btnVendaPeriodo" Margin="5 5 5 0" Content="Carregar" Click="btnVendaPeriodo_Click" />
+        </StackPanel>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="2">
+            <Label Content="Produtos mais vendidos" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
+            <Label Content="Quantidade" />
+            <TextBox x:Name="txtQuantidade" />
+            <Button x:Name="btnMaisVendidos" Margin="5 5 5 0" Content="Listar" Click="btnMaisVendidos_Click" />
+        </StackPanel>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="3">
+            <Label Content="Clientes VIP's" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
+            <Button x:Name="btnClientesVips" Margin="5 5 5 0" Content="Mostar" Click="btnClientesVips_Click" />
+        </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Margin="5 0 0 0">
+            <Label x:Name="lblResultado" Content="Resultado" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
+            <DataGrid 
+            BorderThickness="0"
+            x:Name="grdResultado"
+            IsReadOnly="True"
+            />
+        </StackPanel>
+    </Grid>
+</Window>

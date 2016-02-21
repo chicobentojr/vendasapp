@@ -21,6 +21,18 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+
+        <Button x:Name="btnListagens" 
+                ToolTip="Listagens" 
+                Grid.Column="4" 
+                Grid.Row="0"
+                Background="Transparent"
+                BorderThickness="0" Click="btnListagens_Click">
+            <StackPanel>
+                <Image Source="../Imagens/Listagem.png" />
+            </StackPanel>
+        </Button>
+
         <Button x:Name="btnClientes" 
                 ToolTip="Clientes" 
                 Grid.Column="1" 
