@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using SistemaDeVendasWPF.Views;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SistemaDeVendasWPF
+namespace SistemaDeVendasWPF.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,6 +24,13 @@ namespace SistemaDeVendasWPF
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnClientes_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Carregando Clientes...");
+            ClienteWindow clienteWindow = new ClienteWindow();
+            clienteWindow.Show();
         }
     }
 }

@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeVendasAPI", "SistemaDeVendasAPI\SistemaDeVendasAPI.csproj", "{E4DD37E6-B966-45D3-8905-55FBB8955576}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeVendasWPF", "SistemaDeVendasWPF\SistemaDeVendasWPF.csproj", "{E7B46BAD-00BD-4A65-AC93-75A59958A6CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E4DD37E6-B966-45D3-8905-55FBB8955576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4DD37E6-B966-45D3-8905-55FBB8955576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4DD37E6-B966-45D3-8905-55FBB8955576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7B46BAD-00BD-4A65-AC93-75A59958A6CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7B46BAD-00BD-4A65-AC93-75A59958A6CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7B46BAD-00BD-4A65-AC93-75A59958A6CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7B46BAD-00BD-4A65-AC93-75A59958A6CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
