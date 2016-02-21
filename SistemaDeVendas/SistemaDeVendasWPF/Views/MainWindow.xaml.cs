@@ -35,5 +35,10 @@ namespace SistemaDeVendasWPF.Views
         {
             new FabricanteWindow().Show();
         }
+
+        private void btnProdutos_Click(object sender, RoutedEventArgs e)
+        {
+            new ProdutoWIndow().Show();
+        }
     }
 }

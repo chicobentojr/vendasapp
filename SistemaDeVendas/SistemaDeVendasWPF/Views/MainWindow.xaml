@@ -19,6 +19,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Button x:Name="btnClientes" 
                 ToolTip="Clientes" 
@@ -37,10 +38,19 @@
                 Background="Transparent"
                 BorderThickness="0" Click="btnFabricantes_Click">
             <StackPanel>
-                <Image Source="../Imagens/Fabricantes.png" />
+                <Image Source="../Imagens/Fabricante.png" />
             </StackPanel>
         </Button>
-
+        <Button x:Name="btnProdutos" 
+                ToolTip="Produtos" 
+                Grid.Column="5" 
+                Grid.Row="1"
+                Background="Transparent"
+                BorderThickness="0" Click="btnProdutos_Click">
+            <StackPanel>
+                <Image Source="../Imagens/Produto.png" />
+            </StackPanel>
+        </Button>
 
     </Grid>
 </Window>

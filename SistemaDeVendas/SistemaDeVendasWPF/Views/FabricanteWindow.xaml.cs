@@ -19,7 +19,7 @@ namespace SistemaDeVendasWPF.Views
         {
             List<Fabricante> fabricantes = Fabricante.Listar();
             grdFabricantes.ItemsSource = fabricantes;
-            cmdEdtFabricante.ItemsSource = fabricantes;
+            cmbEdtFabricante.ItemsSource = fabricantes;
             cmbDelFabricante.ItemsSource = fabricantes;
         }
 
@@ -41,7 +41,7 @@ namespace SistemaDeVendasWPF.Views
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
 
-            Fabricante fabricante = cmdEdtFabricante.SelectedItem as Fabricante;
+            Fabricante fabricante = cmbEdtFabricante.SelectedItem as Fabricante;
 
             fabricante.Descricao = txtEdtDescricao.Text;
 
