@@ -1,5 +1,6 @@
 ﻿using SistemaDeVendasWPF.Models;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
 
 namespace SistemaDeVendasWPF.Views
@@ -29,52 +30,71 @@ namespace SistemaDeVendasWPF.Views
 
         private void btnCadastrar_Click(object sender, RoutedEventArgs e)
         {
-            string descricao = txtDescricao.Text;
-            int fabricanteId = (cmbFabricante.SelectedItem as Fabricante).FabricanteId;
-            int qtdEstoque = int.Parse(txtQtdEstoque.Text);
-            double preco = double.Parse(txtPreco.Text.Replace(",", "."));
+            try {
+                string descricao = txtDescricao.Text;
+                int fabricanteId = (cmbFabricante.SelectedItem as Fabricante).FabricanteId;
+                int qtdEstoque = int.Parse(txtQtdEstoque.Text);
+                decimal preco = decimal.Parse(txtPreco.Text,new CultureInfo("pt-BR"));
 
-            Produto produto = new Produto(descricao,fabricanteId,qtdEstoque,preco);
+                Produto produto = new Produto(descricao, fabricanteId, qtdEstoque, preco);
 
-            produto = Produto.Inserir(produto);
+                produto = Produto.Inserir(produto);
 
-            if (produto.ProdutoId != 0)
+                if (produto.ProdutoId != 0)
+                {
+                    this.carregarProdutos();
+                    MessageBox.Show("Produto cadastrado com sucesso!","Aviso");
+                }
+            }
+            catch
             {
-                this.carregarProdutos();
-                MessageBox.Show("Produto cadastrado com sucesso!");
+                MessageBox.Show("Verifique se os dados estão preenchidos corretamente!", "Alerta");
             }
         }
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            Produto produto = cmbEdtProduto.SelectedItem as Produto;
-
-            produto.Descricao = txtEdtDescricao.Text;
-            produto.FabricanteId = (cmbEdtFabricante.SelectedItem as Fabricante).FabricanteId;
-            produto.QtdEstoque = int.Parse(txtEdtQtdEstoque.Text);
-            produto.Preco = double.Parse(txtEdtPreco.Text.Replace(",", "."));
-
-            produto = Produto.Editar(produto);
-
-            if (produto.ProdutoId != 0)
+            try
             {
-                this.carregarProdutos();
-                MessageBox.Show("Produto atualizado com sucesso!");
+                Produto produto = cmbEdtProduto.SelectedItem as Produto;
+
+                produto.Descricao = txtEdtDescricao.Text;
+                produto.FabricanteId = (cmbEdtFabricante.SelectedItem as Fabricante).FabricanteId;
+                produto.QtdEstoque = int.Parse(txtEdtQtdEstoque.Text);
+                produto.Preco = decimal.Parse(txtEdtPreco.Text,new CultureInfo("pt-BR"));
+
+                produto = Produto.Editar(produto);
+
+                if (produto.ProdutoId != 0)
+                {
+                    this.carregarProdutos();
+                    MessageBox.Show("Produto atualizado com sucesso!","Aviso");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Verifique se os dados estão preenchidos corretamente!", "Alerta");
             }
         }
 
         private void btnExcluir_Click(object sender, RoutedEventArgs e)
         {
-            Produto produto = cmbDelProduto.SelectedItem as Produto;
-
-            produto = Produto.Excluir(produto);
-
-            if (produto.ProdutoId != 0)
+            try
             {
-                this.carregarProdutos();
-                MessageBox.Show("Produto excluído com sucesso!");
-            }
+                Produto produto = cmbDelProduto.SelectedItem as Produto;
 
+                produto = Produto.Excluir(produto);
+
+                if (produto.ProdutoId != 0)
+                {
+                    this.carregarProdutos();
+                    MessageBox.Show("Produto excluído com sucesso!","Aviso");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Verifique se os dados estão preenchidos corretamente!","Alerta");
+            }
         }
     }
 }

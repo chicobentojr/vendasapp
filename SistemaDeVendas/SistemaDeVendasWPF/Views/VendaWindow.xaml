@@ -6,7 +6,7 @@
         xmlns:dc="clr-namespace:SistemaDeVendasWPF.Helpers"
         xmlns:local="clr-namespace:SistemaDeVendasWPF.Views"
         mc:Ignorable="d"
-        Title="Venda" Height="500" Width="800"
+        Title="Venda" Height="500" Width="900"
         Icon="../Imagens/Venda.png">
     <Grid Margin="5 0 5 0">
         <Grid.Resources>

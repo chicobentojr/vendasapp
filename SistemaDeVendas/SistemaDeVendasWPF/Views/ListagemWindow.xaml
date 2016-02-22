@@ -52,7 +52,7 @@
                     Grid.RowSpan="3"
                     Margin="5 0 0 0">
             <Label x:Name="lblResultado" Content="Resultado" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
-            <DataGrid 
+            <DataGrid AutoGenerateColumns="True"
             BorderThickness="0"
             x:Name="grdResultado"
             IsReadOnly="True"

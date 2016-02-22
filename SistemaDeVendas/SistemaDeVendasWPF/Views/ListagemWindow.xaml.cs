@@ -34,46 +34,60 @@ namespace SistemaDeVendasWPF.Views
 
         private void btnVendaPeriodo_Click(object sender, RoutedEventArgs e)
         {
-            DateTime inicio = DateTime.Parse(txtDataInicio.ToString());
-            DateTime fim = DateTime.Parse(txtDataFim.ToString());
+            try {
+                DateTime inicio = DateTime.Parse(txtDataInicio.ToString());
+                DateTime fim = DateTime.Parse(txtDataFim.ToString());
 
-            List<Venda> vendas = Listagem.ListarPorPeriodo(inicio.ToString("yyyy-MM-dd"), fim.ToString("yyyy-MM-dd"));
-            
-            grdResultado.ItemsSource = from v in vendas select new {
-                Id = v.VendaId,
-                Cliente = v.Cliente.Nome,
-                Data = v.Data.ToShortDateString(),
-                Total1 = v.Total1.paraValorReal(),
-                Desconto = v.Desconto + "%",
-                Total2 = v.Total2.paraValorReal()
-            };
+                List<Venda> vendas = Listagem.ListarPorPeriodo(inicio.ToString("yyyy-MM-dd"), fim.ToString("yyyy-MM-dd"));
 
-            grdResultado.Columns[3].Header = "Total sem desconto";
-            grdResultado.Columns[5].Header = "Total com desconto";
+                grdResultado.ItemsSource = from v in vendas select new {
+                    Id = v.VendaId,
+                    Cliente = v.Cliente.Nome,
+                    Data = v.Data.ToShortDateString(),
+                    Total1 = v.Total1.paraValorReal(),
+                    Desconto = v.Desconto + "%",
+                    Total2 = v.Total2.paraValorReal()
+                };
 
-            lblResultado.Content = String.Format("Resultado: Vendas de {0} até {1}",inicio.ToShortDateString(),fim.ToShortDateString());
+                grdResultado.Columns[3].Header = "Total sem desconto";
+                grdResultado.Columns[5].Header = "Total com desconto";
+
+                lblResultado.Content = String.Format("Resultado: Vendas de {0} até {1}", inicio.ToShortDateString(), fim.ToShortDateString());
+            }
+
+            catch
+            {
+                MessageBox.Show("Verifique se os dados estão preenchidos corretamente!", "Alerta");
+            }
         }
 
         private void btnMaisVendidos_Click(object sender, RoutedEventArgs e)
         {
-            int quantidade = int.Parse(txtQuantidade.Text);
-            
-            List<Listagem.MaisVendidos> maisVendidos = Listagem.ListarMaisVendidos(quantidade);
+            try {
+                int quantidade = int.Parse(txtQuantidade.Text);
 
-            int i = 1;
+                List<Listagem.MaisVendidos> maisVendidos = Listagem.ListarMaisVendidos(quantidade);
 
-            grdResultado.ItemsSource = from mv in maisVendidos
-                                       select new
-                                       {
-                                           Indíce = i++,
-                                           Produto = mv.Produto,
-                                           Fabricante = mv.Fabricante,
-                                           Vendidos = mv.Vendidos
-                                       };
+                int i = 1;
 
-            grdResultado.Columns[3].Header = "Quantidade de Vendidos";
+                grdResultado.ItemsSource = from mv in maisVendidos
+                                           select new
+                                           {
+                                               Indíce = i++,
+                                               Produto = mv.Produto,
+                                               Fabricante = mv.Fabricante,
+                                               Vendidos = mv.Vendidos
+                                           };
 
-            lblResultado.Content = String.Format("Resultado: {0}° Produto(s) mais vendido(s)",quantidade);
+                grdResultado.Columns[3].Header = "Quantidade de Vendidos";
+
+                lblResultado.Content = String.Format("Resultado: {0}° Produto(s) mais vendido(s)", quantidade);
+            }
+
+            catch
+            {
+                MessageBox.Show("Verifique se os dados estão preenchidos corretamente!", "Alerta");
+            }
         }
 
         private void btnClientesVips_Click(object sender, RoutedEventArgs e)
@@ -93,20 +107,23 @@ namespace SistemaDeVendasWPF.Views
             List<Venda> vendas = Listagem.ListarPorCliente(clienteId);
 
             grdResultado.ItemsSource = from v in vendas
-                                       select new
-                                       {
-                                           Id = v.VendaId,
-                                           Cliente = v.Cliente.Nome,
-                                           Data = v.Data.ToShortDateString(),
-                                           Total1 = v.Total1.paraValorReal(),
-                                           Desconto = v.Desconto + "%",
-                                           Total2 = v.Total2.paraValorReal()
-                                       };
+                                        select new
+                                        {
+                                            Id = v.VendaId,
+                                            Cliente = v.Cliente.Nome,
+                                            Data = v.Data.ToShortDateString(),
+                                            Total1 = v.Total1.paraValorReal(),
+                                            Desconto = v.Desconto + "%",
+                                            Total2 = v.Total2.paraValorReal()
+                                        };
 
-            grdResultado.Columns[3].Header = "Total sem desconto";
-            grdResultado.Columns[5].Header = "Total com desconto";
+            if (grdResultado.Items.Count > 0)
+            {
+                grdResultado.Columns[3].Header = "Total sem desconto";
+                grdResultado.Columns[5].Header = "Total com desconto";
+            }
 
-            lblResultado.Content = String.Format("Resultado: Vendas do Cliente {0}",cliente.Nome);
+            lblResultado.Content = String.Format("Resultado: Vendas do Cliente {0}", cliente.Nome);
         }
     }
 }
