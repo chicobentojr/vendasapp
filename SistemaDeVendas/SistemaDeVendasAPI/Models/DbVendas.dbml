@@ -14,7 +14,7 @@
       <Column Name="ItemNumero" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ProdutoId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Quantidade" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Preco" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Preco" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Association Name="Produto_VendaProduto" Member="Produto" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="Produto" IsForeignKey="true" />
       <Association Name="Venda_VendaProduto" Member="Venda" ThisKey="VendaId" OtherKey="VendaId" Type="Venda" IsForeignKey="true" />
     </Type>
@@ -32,7 +32,7 @@
       <Column Name="Descricao" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="FabricanteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="QtdEstoque" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Preco" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Preco" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Association Name="Produto_VendaProduto" Member="VendaProdutos" AccessModifier="Internal" ThisKey="ProdutoId" OtherKey="ProdutoId" Type="VendaProduto" />
       <Association Name="Fabricante_Produto" Member="Fabricante" ThisKey="FabricanteId" OtherKey="FabricanteId" Type="Fabricante" IsForeignKey="true" />
     </Type>
@@ -42,9 +42,9 @@
       <Column Name="VendaId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ClienteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Total1" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Total2" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Desconto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Total1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Total2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Desconto" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="Venda_VendaProduto" Member="VendaProdutos" AccessModifier="Internal" ThisKey="VendaId" OtherKey="VendaId" Type="VendaProduto" />
       <Association Name="Cliente_Venda" Member="Cliente" ThisKey="ClienteId" OtherKey="ClienteId" Type="Cliente" IsForeignKey="true" />
     </Type>
@@ -68,9 +68,9 @@
       <Column Name="VendaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ClienteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Total1" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Total2" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Desconto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Total1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Total2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Desconto" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.spClienteVip" Method="spClienteVip">
@@ -105,9 +105,9 @@
       <Column Name="VendaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ClienteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Total1" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Total2" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Desconto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Total1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Total2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Desconto" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
