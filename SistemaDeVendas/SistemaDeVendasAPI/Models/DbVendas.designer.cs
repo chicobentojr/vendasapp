@@ -132,11 +132,11 @@ namespace SistemaDeVendasAPI.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spVendasPorPeriodo")]
-		public ISingleResult<spVendasPorPeriodoResult> spVendasPorPeriodo([global::System.Data.Linq.Mapping.ParameterAttribute(Name="DataInicio", DbType="DateTime")] System.Nullable<System.DateTime> dataInicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DataFim", DbType="DateTime")] System.Nullable<System.DateTime> dataFim)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spVendasPorCliente")]
+		public ISingleResult<spVendasPorClienteResult> spVendasPorCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClienteId", DbType="Int")] System.Nullable<int> clienteId)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), dataInicio, dataFim);
-			return ((ISingleResult<spVendasPorPeriodoResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), clienteId);
+			return ((ISingleResult<spVendasPorClienteResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spClienteVip")]
@@ -169,11 +169,11 @@ namespace SistemaDeVendasAPI.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spVendasPorCliente")]
-		public ISingleResult<spVendasPorClienteResult> spVendasPorCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClienteId", DbType="Int")] System.Nullable<int> clienteId)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spVendasPorPeriodo")]
+		public ISingleResult<spVendasPorPeriodoResult> spVendasPorPeriodo([global::System.Data.Linq.Mapping.ParameterAttribute(Name="DataInicio", DbType="DateTime")] System.Nullable<System.DateTime> dataInicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DataFim", DbType="DateTime")] System.Nullable<System.DateTime> dataFim)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), clienteId);
-			return ((ISingleResult<spVendasPorClienteResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), dataInicio, dataFim);
+			return ((ISingleResult<spVendasPorPeriodoResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -329,7 +329,7 @@ namespace SistemaDeVendasAPI.Models
 		
 		private int _Quantidade;
 		
-		private double _Preco;
+		private decimal _Preco;
 		
 		private EntityRef<Produto> _Produto;
 		
@@ -347,7 +347,7 @@ namespace SistemaDeVendasAPI.Models
     partial void OnProdutoIdChanged();
     partial void OnQuantidadeChanging(int value);
     partial void OnQuantidadeChanged();
-    partial void OnPrecoChanging(double value);
+    partial void OnPrecoChanging(decimal value);
     partial void OnPrecoChanged();
     #endregion
 		
@@ -446,8 +446,8 @@ namespace SistemaDeVendasAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preco", DbType="Float NOT NULL")]
-		public double Preco
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preco", DbType="Money NOT NULL")]
+		public decimal Preco
 		{
 			get
 			{
@@ -683,7 +683,7 @@ namespace SistemaDeVendasAPI.Models
 		
 		private int _QtdEstoque;
 		
-		private double _Preco;
+		private decimal _Preco;
 		
 		private EntitySet<VendaProduto> _VendaProdutos;
 		
@@ -701,7 +701,7 @@ namespace SistemaDeVendasAPI.Models
     partial void OnFabricanteIdChanged();
     partial void OnQtdEstoqueChanging(int value);
     partial void OnQtdEstoqueChanged();
-    partial void OnPrecoChanging(double value);
+    partial void OnPrecoChanging(decimal value);
     partial void OnPrecoChanged();
     #endregion
 		
@@ -796,8 +796,8 @@ namespace SistemaDeVendasAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preco", DbType="Float NOT NULL")]
-		public double Preco
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preco", DbType="Money NOT NULL")]
+		public decimal Preco
 		{
 			get
 			{
@@ -908,11 +908,11 @@ namespace SistemaDeVendasAPI.Models
 		
 		private System.Nullable<System.DateTime> _Data;
 		
-		private System.Nullable<double> _Total1;
+		private System.Nullable<decimal> _Total1;
 		
-		private System.Nullable<double> _Total2;
+		private System.Nullable<decimal> _Total2;
 		
-		private System.Nullable<double> _Desconto;
+		private System.Nullable<decimal> _Desconto;
 		
 		private EntitySet<VendaProduto> _VendaProdutos;
 		
@@ -928,11 +928,11 @@ namespace SistemaDeVendasAPI.Models
     partial void OnClienteIdChanged();
     partial void OnDataChanging(System.Nullable<System.DateTime> value);
     partial void OnDataChanged();
-    partial void OnTotal1Changing(System.Nullable<double> value);
+    partial void OnTotal1Changing(System.Nullable<decimal> value);
     partial void OnTotal1Changed();
-    partial void OnTotal2Changing(System.Nullable<double> value);
+    partial void OnTotal2Changing(System.Nullable<decimal> value);
     partial void OnTotal2Changed();
-    partial void OnDescontoChanging(System.Nullable<double> value);
+    partial void OnDescontoChanging(System.Nullable<decimal> value);
     partial void OnDescontoChanged();
     #endregion
 		
@@ -1007,8 +1007,8 @@ namespace SistemaDeVendasAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total1", DbType="Float")]
-		public System.Nullable<double> Total1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total1", DbType="Money")]
+		public System.Nullable<decimal> Total1
 		{
 			get
 			{
@@ -1027,8 +1027,8 @@ namespace SistemaDeVendasAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total2", DbType="Float")]
-		public System.Nullable<double> Total2
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total2", DbType="Money")]
+		public System.Nullable<decimal> Total2
 		{
 			get
 			{
@@ -1047,8 +1047,8 @@ namespace SistemaDeVendasAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Desconto", DbType="Float")]
-		public System.Nullable<double> Desconto
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Desconto", DbType="Money")]
+		public System.Nullable<decimal> Desconto
 		{
 			get
 			{
@@ -1210,7 +1210,7 @@ namespace SistemaDeVendasAPI.Models
 		}
 	}
 	
-	public partial class spVendasPorPeriodoResult
+	public partial class spVendasPorClienteResult
 	{
 		
 		private int _VendaId;
@@ -1219,13 +1219,13 @@ namespace SistemaDeVendasAPI.Models
 		
 		private System.Nullable<System.DateTime> _Data;
 		
-		private System.Nullable<double> _Total1;
+		private System.Nullable<decimal> _Total1;
 		
-		private System.Nullable<double> _Total2;
+		private System.Nullable<decimal> _Total2;
 		
-		private System.Nullable<double> _Desconto;
+		private System.Nullable<decimal> _Desconto;
 		
-		public spVendasPorPeriodoResult()
+		public spVendasPorClienteResult()
 		{
 		}
 		
@@ -1277,8 +1277,8 @@ namespace SistemaDeVendasAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total1", DbType="Float")]
-		public System.Nullable<double> Total1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total1", DbType="Money")]
+		public System.Nullable<decimal> Total1
 		{
 			get
 			{
@@ -1293,8 +1293,8 @@ namespace SistemaDeVendasAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total2", DbType="Float")]
-		public System.Nullable<double> Total2
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total2", DbType="Money")]
+		public System.Nullable<decimal> Total2
 		{
 			get
 			{
@@ -1309,8 +1309,8 @@ namespace SistemaDeVendasAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Desconto", DbType="Float")]
-		public System.Nullable<double> Desconto
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Desconto", DbType="Money")]
+		public System.Nullable<decimal> Desconto
 		{
 			get
 			{
@@ -1406,7 +1406,7 @@ namespace SistemaDeVendasAPI.Models
 		}
 	}
 	
-	public partial class spVendasPorClienteResult
+	public partial class spVendasPorPeriodoResult
 	{
 		
 		private int _VendaId;
@@ -1415,13 +1415,13 @@ namespace SistemaDeVendasAPI.Models
 		
 		private System.Nullable<System.DateTime> _Data;
 		
-		private System.Nullable<double> _Total1;
+		private System.Nullable<decimal> _Total1;
 		
-		private System.Nullable<double> _Total2;
+		private System.Nullable<decimal> _Total2;
 		
-		private System.Nullable<double> _Desconto;
+		private System.Nullable<decimal> _Desconto;
 		
-		public spVendasPorClienteResult()
+		public spVendasPorPeriodoResult()
 		{
 		}
 		
@@ -1473,8 +1473,8 @@ namespace SistemaDeVendasAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total1", DbType="Float")]
-		public System.Nullable<double> Total1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total1", DbType="Money")]
+		public System.Nullable<decimal> Total1
 		{
 			get
 			{
@@ -1489,8 +1489,8 @@ namespace SistemaDeVendasAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total2", DbType="Float")]
-		public System.Nullable<double> Total2
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total2", DbType="Money")]
+		public System.Nullable<decimal> Total2
 		{
 			get
 			{
@@ -1505,8 +1505,8 @@ namespace SistemaDeVendasAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Desconto", DbType="Float")]
-		public System.Nullable<double> Desconto
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Desconto", DbType="Money")]
+		public System.Nullable<decimal> Desconto
 		{
 			get
 			{
