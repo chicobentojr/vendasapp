@@ -27,7 +27,7 @@ namespace SistemaDeVendasWPF.Views
         private void btnCadastrar_Click(object sender, RoutedEventArgs e)
         {
             string nome = txtNome.Text;
-            bool vip = chkVip.IsEnabled;
+            bool vip = chkVip.IsChecked.Value;
 
             Cliente cliente = new Cliente(nome, vip);
 
@@ -46,7 +46,7 @@ namespace SistemaDeVendasWPF.Views
             Cliente cliente = cmbEdtCliente.SelectedItem as Cliente;
             
             cliente.Nome = txtEdtNome.Text;
-            cliente.Vip = chkEdtVip.IsEnabled;
+            cliente.Vip = chkEdtVip.IsChecked.Value;
 
             cliente = Cliente.Editar(cliente);
 

@@ -58,6 +58,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\DoubleParaRealConverter.cs" />
+    <Compile Include="Helpers\Extensoes.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Fabricante.cs" />
     <Compile Include="Models\Listagem.cs" />

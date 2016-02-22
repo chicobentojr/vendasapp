@@ -2,12 +2,16 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:dc="clr-namespace:SistemaDeVendasWPF.Helpers"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaDeVendasWPF.Views"
         mc:Ignorable="d"
         Title="Produto" Height="750" Width="750"
         Icon="../Imagens/Produto.png">
     <Grid Margin="5 0 5 0">
+        <Grid.Resources>
+            <dc:DoubleParaRealConverter x:Key="RealConversor" />
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="4*" />
@@ -59,10 +63,18 @@
                     Margin="5 0 0 0">
             <Label Content="Produtos" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
             <DataGrid 
-            BorderThickness="0"
-            x:Name="grdProdutos"
-            IsReadOnly="True"
-            />
+                BorderThickness="0"
+                x:Name="grdProdutos"
+                IsReadOnly="True"
+                AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding ProdutoId}"/>
+                    <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}"/>
+                    <DataGridTextColumn Header="Fabricante" Binding="{Binding Fabricante.Descricao}"/>
+                    <DataGridTextColumn Header="Quantidade no Estoque" Binding="{Binding QtdEstoque}"/>
+                    <DataGridTextColumn Header="Preço" Binding="{Binding Preco, Converter={StaticResource RealConversor}}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Window>

@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaDeVendasWPF"
         mc:Ignorable="d"
-        Title="Sistema de Vendas" Height="350" Width="600"
+        Title="Sistema de Vendas" Height="450" Width="600"
         Icon="../Imagens/Logo.ico">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -20,56 +22,65 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <Label Name="lblTitulo" Grid.ColumnSpan="5" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="White" Background="#FF29ABE2" Content="Sistema de Vendas" FontWeight="Bold" />
+
         <Button x:Name="btnVendas" 
                 ToolTip="Vendas" 
                 Grid.Column="1" 
-                Grid.Row="0"
+                Grid.Row="2"
                 Background="Transparent"
                 BorderThickness="0" Click="btnVendas_Click">
             <StackPanel>
                 <Image Source="../Imagens/Venda.png" />
+                <Label Margin="0 6" FontSize="10" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="White" Background="#FF29ABE2" Content="Vendas"/>
             </StackPanel>
         </Button>
         
         <Button x:Name="btnListagens" 
                 ToolTip="Listagens" 
                 Grid.Column="3" 
-                Grid.Row="0"
+                Grid.Row="2"
                 Background="Transparent"
                 BorderThickness="0" Click="btnListagens_Click">
             <StackPanel>
                 <Image Source="../Imagens/Listagem.png" />
+                <Label Margin="0 6" FontSize="10" Grid.Column="3" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="White" Background="#FF29ABE2" Content="Listagens"/>
             </StackPanel>
         </Button>
 
         <Button x:Name="btnClientes" 
                 ToolTip="Clientes" 
                 Grid.Column="0" 
-                Grid.Row="1"
+                Grid.Row="4"
                 Background="Transparent"
                 BorderThickness="0" Click="btnClientes_Click">
             <StackPanel>
                 <Image Source="../Imagens/Cliente.png" />
+                <Label Margin="0 6" FontSize="10" Grid.Column="0" Grid.Row="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="White" Background="#FF29ABE2" Content="Clientes"/>
             </StackPanel>
         </Button>
+        
         <Button x:Name="btnFabricantes" 
                 ToolTip="Fabricantes" 
                 Grid.Column="2" 
-                Grid.Row="1"
+                Grid.Row="4"
                 Background="Transparent"
                 BorderThickness="0" Click="btnFabricantes_Click">
             <StackPanel>
                 <Image Source="../Imagens/Fabricante.png" />
+                <Label Margin="0 6" FontSize="10" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="White" Background="#FF29ABE2" Content="Fabricantes"/>
             </StackPanel>
         </Button>
+        
         <Button x:Name="btnProdutos" 
                 ToolTip="Produtos" 
                 Grid.Column="4" 
-                Grid.Row="1"
+                Grid.Row="4"
                 Background="Transparent"
                 BorderThickness="0" Click="btnProdutos_Click">
             <StackPanel>
                 <Image Source="../Imagens/Produto.png" />
+                <Label Margin="0 6" FontSize="10" Grid.Column="5" Grid.Row="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="White" Background="#FF29ABE2" Content="Produtos"/>
             </StackPanel>
         </Button>
 

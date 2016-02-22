@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SistemaDeVendasWPF.Helpers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,25 +33,55 @@ namespace SistemaDeVendasWPF.Views
         }
 
         private void btnVendaPeriodo_Click(object sender, RoutedEventArgs e)
-        { 
-            DateTime inicio =  DateTime.Parse(txtDataInicio.ToString());
+        {
+            DateTime inicio = DateTime.Parse(txtDataInicio.ToString());
             DateTime fim = DateTime.Parse(txtDataFim.ToString());
 
-            grdResultado.ItemsSource = Listagem.ListarPorPeriodo(inicio.ToString("yyyy-MM-dd"), fim.ToString("yyyy-MM-dd"));
+            List<Venda> vendas = Listagem.ListarPorPeriodo(inicio.ToString("yyyy-MM-dd"), fim.ToString("yyyy-MM-dd"));
+            
+            grdResultado.ItemsSource = from v in vendas select new {
+                Id = v.VendaId,
+                Cliente = v.Cliente.Nome,
+                Data = v.Data.ToShortDateString(),
+                Total1 = v.Total1.paraValorReal(),
+                Desconto = v.Desconto + "%",
+                Total2 = v.Total2.paraValorReal()
+            };
+
+            grdResultado.Columns[3].Header = "Total sem desconto";
+            grdResultado.Columns[5].Header = "Total com desconto";
+
             lblResultado.Content = String.Format("Resultado: Vendas de {0} até {1}",inicio.ToShortDateString(),fim.ToShortDateString());
         }
 
         private void btnMaisVendidos_Click(object sender, RoutedEventArgs e)
         {
             int quantidade = int.Parse(txtQuantidade.Text);
+            
+            List<Listagem.MaisVendidos> maisVendidos = Listagem.ListarMaisVendidos(quantidade);
 
-            grdResultado.ItemsSource = Listagem.ListarMaisVendidos(quantidade);
+            int i = 1;
+
+            grdResultado.ItemsSource = from mv in maisVendidos
+                                       select new
+                                       {
+                                           Indíce = i++,
+                                           Produto = mv.Produto,
+                                           Fabricante = mv.Fabricante,
+                                           Vendidos = mv.Vendidos
+                                       };
+
+            grdResultado.Columns[3].Header = "Quantidade de Vendidos";
+
             lblResultado.Content = String.Format("Resultado: {0}° Produto(s) mais vendido(s)",quantidade);
         }
 
         private void btnClientesVips_Click(object sender, RoutedEventArgs e)
         {
             grdResultado.ItemsSource = Listagem.ListarClientesVips();
+
+            grdResultado.Columns[0].Header = "Id";
+
             lblResultado.Content = "Resultado: Clientes VIP's";
         }
 
@@ -58,7 +89,23 @@ namespace SistemaDeVendasWPF.Views
         {
             Cliente cliente = cmbCliente.SelectedItem as Cliente;
             int clienteId = cliente.ClienteId;
-            grdResultado.ItemsSource = Listagem.ListarPorCliente(clienteId);
+
+            List<Venda> vendas = Listagem.ListarPorCliente(clienteId);
+
+            grdResultado.ItemsSource = from v in vendas
+                                       select new
+                                       {
+                                           Id = v.VendaId,
+                                           Cliente = v.Cliente.Nome,
+                                           Data = v.Data.ToShortDateString(),
+                                           Total1 = v.Total1.paraValorReal(),
+                                           Desconto = v.Desconto + "%",
+                                           Total2 = v.Total2.paraValorReal()
+                                       };
+
+            grdResultado.Columns[3].Header = "Total sem desconto";
+            grdResultado.Columns[5].Header = "Total com desconto";
+
             lblResultado.Content = String.Format("Resultado: Vendas do Cliente {0}",cliente.Nome);
         }
     }

@@ -47,10 +47,15 @@
                     Margin="5 0 0 0">
             <Label Content="Fabricantes" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
             <DataGrid 
-            BorderThickness="0"
-            x:Name="grdFabricantes"
-            IsReadOnly="True"
-            />
+                AutoGenerateColumns="False"
+                BorderThickness="0"
+                x:Name="grdFabricantes"
+                IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding FabricanteId}"/>
+                    <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Window>

@@ -45,7 +45,7 @@
         <StackPanel Grid.Column="0"
                     Grid.Row="3">
             <Label Content="Clientes VIP's" Margin="0 2 0 2" Background="#FF29ABE2" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="White" />
-            <Button x:Name="btnClientesVips" Margin="5 5 5 0" Content="Mostar" Click="btnClientesVips_Click" />
+            <Button x:Name="btnClientesVips" Margin="5 5 5 0" Content="Mostrar" Click="btnClientesVips_Click" />
         </StackPanel>
         <StackPanel Grid.Column="1"
                     Grid.Row="0"
