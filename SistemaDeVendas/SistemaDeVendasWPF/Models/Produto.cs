@@ -15,7 +15,7 @@ namespace SistemaDeVendasWPF.Models
             return this.Descricao;
         }
 
-        public Produto(string descricao,int fabricanteId, int qtdEstoque, double preco)
+        public Produto(string descricao,int fabricanteId, int qtdEstoque, decimal preco)
         {
             this.Descricao = descricao;
             this.FabricanteId = fabricanteId;
@@ -27,7 +27,7 @@ namespace SistemaDeVendasWPF.Models
         public string Descricao { get; set; }
         public int FabricanteId { get; set; }
         public int QtdEstoque { get; set; }
-        public double Preco { get; set; }
+        public decimal Preco { get; set; }
 
         public Fabricante Fabricante { get; set; }
 
@@ -95,7 +95,7 @@ namespace SistemaDeVendasWPF.Models
                 new KeyValuePair<string,string>("Descricao",this.Descricao),
                 new KeyValuePair<string,string>("FabricanteId",this.FabricanteId.ToString()),
                 new KeyValuePair<string,string>("QtdEstoque",this.QtdEstoque.ToString()),
-                new KeyValuePair<string,string>("Preco",this.Preco.ToString())
+                new KeyValuePair<string,string>("Preco",this.Preco.ToString().Replace(',','.'))
             });
         }
     }

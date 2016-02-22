@@ -14,7 +14,7 @@ namespace SistemaDeVendasWPF.Models
         public int ItemNumero { get; set; }
         public int ProdutoId { get; set; }
         public int Quantidade { get; set; }
-        public double Preco { get; set; }
+        public decimal Preco { get; set; }
         public Produto Produto { get; set; }
         public Venda Venda { get; set; }
 
@@ -54,7 +54,7 @@ namespace SistemaDeVendasWPF.Models
                 new KeyValuePair<string,string>("ItemNumero",this.ItemNumero.ToString("yyyy-MM-dd")),
                 new KeyValuePair<string,string>("ProdutoId",this.ProdutoId.ToString()),
                 new KeyValuePair<string,string>("Quantidade",this.Quantidade.ToString()),
-                new KeyValuePair<string,string>("Preco",this.Preco.ToString())
+                new KeyValuePair<string,string>("Preco",this.Preco.ToString().Replace(',','.'))
             });
         }
     }

@@ -10,7 +10,7 @@
         Icon="../Imagens/Produto.png">
     <Grid Margin="5 0 5 0">
         <Grid.Resources>
-            <dc:DoubleParaRealConverter x:Key="RealConversor" />
+            <dc:DecimalParaRealConverter x:Key="RealConversor" />
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />

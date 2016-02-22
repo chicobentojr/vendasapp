@@ -2,7 +2,7 @@
 {
     public static class Extensoes
     {
-        public static string paraValorReal(this double valor)
+        public static string paraValorReal(this decimal valor)
         {
             string strValor = valor.ToString();
             string[] array = strValor.Split(',');
@@ -30,7 +30,7 @@
                 }
                 indice++;
             }
-            return "R$ " + inteiros + "," + casaDecimal;
+            return "R$ " + inteiros + "," + casaDecimal.Substring(0,2);
         }
     }
 }

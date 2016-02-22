@@ -42,8 +42,8 @@ namespace SistemaDeVendasWPF.Views
 
                     desconto = quantidadeVendas >= 10 ? 10 : quantidadeVendas;
                 }
-                double total1 = Produtos.Sum(p => p.Preco);
-                double total2 = desconto > 0 ? total1 - total1 * desconto / 100 : total1;
+                decimal total1 = Produtos.Sum(p => p.Preco);
+                decimal total2 = desconto > 0 ? total1 - total1 * desconto / 100 : total1;
                 lblTotal1.Text = String.Format("Total sem desconto: R$ {0}",total1.paraValorReal());
                 lblDesconto.Text = String.Format("Desconto: {0}%", desconto);
                 lblTotal2.Text = String.Format("Total com desconto: R$ {0}",total2.paraValorReal());

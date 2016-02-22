@@ -8,11 +8,11 @@ using System.Windows.Data;
 
 namespace SistemaDeVendasWPF.Helpers
 {
-    class DoubleParaRealConverter : IValueConverter
+    class DecimalParaRealConverter : IValueConverter
     {
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double valor = (double)value;
+            decimal valor = (decimal)value;
             if(valor >= 0)
             {
                 return valor.paraValorReal();

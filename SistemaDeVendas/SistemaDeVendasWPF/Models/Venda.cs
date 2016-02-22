@@ -13,9 +13,9 @@ namespace SistemaDeVendasWPF.Models
         public int VendaId { get; set; }
         public int ClienteId { get; set; }
         public DateTime Data { get; set; }
-        public double Total1 { get; set; }
-        public double Total2 { get; set; }
-        public double Desconto { get; set; }
+        public decimal Total1 { get; set; }
+        public decimal Total2 { get; set; }
+        public decimal Desconto { get; set; }
         public Cliente Cliente { get; set; }
         
         public Venda(int clienteId,DateTime data)
@@ -88,9 +88,9 @@ namespace SistemaDeVendasWPF.Models
                 new KeyValuePair<string,string>("VendaId",this.VendaId.ToString()),
                 new KeyValuePair<string,string>("ClienteId",this.ClienteId.ToString()),
                 new KeyValuePair<string,string>("Data",this.Data.ToString("yyyy-MM-dd")),
-                new KeyValuePair<string,string>("Total1",this.Total1.ToString()),
-                new KeyValuePair<string,string>("Total2",this.Total2.ToString()),
-                new KeyValuePair<string,string>("Desconto",this.Desconto.ToString())
+                new KeyValuePair<string,string>("Total1",this.Total1.ToString().Replace(',','.')),
+                new KeyValuePair<string,string>("Total2",this.Total2.ToString().Replace(',','.')),
+                new KeyValuePair<string,string>("Desconto",this.Desconto.ToString().Replace(',','.'))
             });
         }
     }
