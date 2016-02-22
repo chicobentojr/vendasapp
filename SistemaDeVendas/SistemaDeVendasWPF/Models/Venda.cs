@@ -26,6 +26,18 @@ namespace SistemaDeVendasWPF.Models
 
         public const string MEDIA_TYPE = "application/x-www-form-urlencoded";
         
+        public static List<Venda> Listar()
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(Properties.Settings.Default.UrlBase);
+            
+            HttpResponseMessage resposta = httpClient.GetAsync("venda").Result;
+
+            List<Venda> vendas = JsonConvert.DeserializeObject<List<Venda>>(resposta.Content.ReadAsStringAsync().Result);
+
+            return vendas;
+        }
+
         public static Venda Inserir(Venda venda)
         {
             HttpClient httpClient = new HttpClient();

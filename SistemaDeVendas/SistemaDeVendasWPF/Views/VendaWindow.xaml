@@ -3,11 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dc="clr-namespace:SistemaDeVendasWPF.Helpers"
         xmlns:local="clr-namespace:SistemaDeVendasWPF.Views"
         mc:Ignorable="d"
-        Title="Venda" Height="500" Width="600"
+        Title="Venda" Height="500" Width="800"
         Icon="../Imagens/Venda.png">
     <Grid Margin="5 0 5 0">
+        <Grid.Resources>
+            <dc:DoubleParaRealConverter x:Key="RealConversor" />
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.25*" />
             <ColumnDefinition Width="*" />
@@ -65,12 +69,14 @@
                     <DataGridTextColumn Header="Produto" Binding="{Binding Path=Produto.Descricao}"/>
                     <DataGridTextColumn Header="Fabricante" Binding="{Binding Path=Produto.Fabricante.Descricao}"/>
                     <DataGridTextColumn Header="Quantidade" Binding="{Binding Path=Quantidade}"/>
-                    <DataGridTextColumn Header="Preço Unitário" Binding="{Binding Path=Produto.Preco}"/>
-                    <DataGridTextColumn Header="Preço Total" Binding="{Binding Path=Preco}"/>
+                    <DataGridTextColumn Header="Preço Unitário" Binding="{Binding Produto.Preco, Converter={StaticResource RealConversor}}"/>
+                    <DataGridTextColumn Header="Preço Total" Binding="{Binding Preco, Converter={StaticResource RealConversor}}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <TextBlock Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" x:Name="lblTotal" Text="Total:" />
+        <TextBlock Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" x:Name="lblTotal1" Text="Total sem desconto:" />
+        <TextBlock Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" x:Name="lblDesconto" Text="Desconto:" />
+        <TextBlock Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" x:Name="lblTotal2" Text="Total com desconto:" />
         <Button x:Name="btnFinalizarVenda" Click="btnFinalizarVenda_Click" Grid.Column="4" Grid.Row="6" Margin="5" Content="Finalizar Venda" />
     </Grid>
 </Window>

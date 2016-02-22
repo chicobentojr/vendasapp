@@ -3,16 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using SistemaDeVendasWPF.Helpers;
 
 namespace SistemaDeVendasWPF.Views
 {
     public partial class VendaWindow : Window
     {
         public static List<VendaProduto> Produtos = new List<VendaProduto>();
-        public static int VendaId = 0;
 
         public VendaWindow()
         {
+            Produtos = new List<VendaProduto>();
             InitializeComponent();
             this.carregarLayout();
         }
@@ -23,6 +24,31 @@ namespace SistemaDeVendasWPF.Views
             cmbProduto.ItemsSource = Produto.Listar();
             txtData.Text = DateTime.Now.ToShortDateString();
             txtQuantidade.Text = "";
+        }
+        public void atualizarTotais()
+        {
+            Cliente cliente = cmbCliente.SelectedItem as Cliente;
+            if (cliente != null)
+            {
+                int desconto = 0;
+                if (cliente.Vip)
+                {
+                    desconto = 15;
+                }
+                else
+                {
+                    List<Venda> vendas = Venda.Listar();
+                    int quantidadeVendas = vendas.Where(v => v.ClienteId == cliente.ClienteId).Count();
+
+                    desconto = quantidadeVendas >= 10 ? 10 : quantidadeVendas;
+                }
+                double total1 = Produtos.Sum(p => p.Preco);
+                double total2 = desconto > 0 ? total1 - total1 * desconto / 100 : total1;
+                lblTotal1.Text = String.Format("Total sem desconto: R$ {0}",total1.paraValorReal());
+                lblDesconto.Text = String.Format("Desconto: {0}%", desconto);
+                lblTotal2.Text = String.Format("Total com desconto: R$ {0}",total2.paraValorReal());
+            }
+
         }
 
         public void atualizarGradeProdutos()
@@ -38,11 +64,18 @@ namespace SistemaDeVendasWPF.Views
             Produto produto = cmbProduto.SelectedItem as Produto;
             int quantidade = int.Parse(txtQuantidade.Text);
 
-            int itemNumero = grdProdutos.Items.Count + 1;
+            if (produto.QtdEstoque >= quantidade)
+            {
+                int itemNumero = grdProdutos.Items.Count + 1;
 
-            VendaWindow.Produtos.Add(new VendaProduto(new Venda(cliente.ClienteId,data),itemNumero,quantidade,produto));
-            this.atualizarGradeProdutos();
-            lblTotal.Text = String.Format("Total: R$ {0}",Produtos.Sum(p=>p.Preco));
+                VendaWindow.Produtos.Add(new VendaProduto(new Venda(cliente.ClienteId, data), itemNumero, quantidade, produto));
+                this.atualizarGradeProdutos();
+                this.atualizarTotais();
+            }
+            else
+            {
+                MessageBox.Show("Não existe essa quantidade disponível no estoque!");
+            }
         }
 
         private void btnFinalizarVenda_Click(object sender, RoutedEventArgs e)
